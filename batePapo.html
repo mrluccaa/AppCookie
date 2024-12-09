@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bate-Papo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #402F1D;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 90%;
+      max-width: 600px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background-color: #FFDBAF;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .message.sent {
+      background-color: #e0f7fa;
+      align-self: flex-end;
+    }
+
+    .message.received {
+      background-color: #f1f1f1;
+      align-self: flex-start;
+    }
+
+    .chat-footer {
+      display: flex;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-footer input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .chat-footer button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .chat-footer button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Bate-Papo</div>
+    <div class="messages" id="messages">
+      <!-- Mensagens aparecerão aqui -->
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="messageInput" placeholder="Digite sua mensagem...">
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+
+    function sendMessage() {
+      const text = messageInput.value.trim();
+      if (text === '') return;
+
+      // Adiciona a mensagem enviada
+      const sentMessage = document.createElement('div');
+      sentMessage.className = 'message sent';
+      sentMessage.textContent = text;
+      messages.appendChild(sentMessage);
+
+      // Simula uma resposta
+      setTimeout(() => {
+        const receivedMessage = document.createElement('div');
+        receivedMessage.className = 'message received';
+        receivedMessage.textContent = 'Mensagem recebida!';
+        messages.appendChild(receivedMessage);
+        messages.scrollTop = messages.scrollHeight; // Mantém o scroll no final
+      }, 1000);
+
+      // Limpa o campo de entrada
+      messageInput.value = '';
+      messages.scrollTop = messages.scrollHeight; // Mantém o scroll no final
+    }
+
+    // Envia mensagem ao pressionar Enter
+    messageInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
