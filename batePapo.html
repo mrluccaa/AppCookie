@@ -98,7 +98,7 @@
   <div class="chat-container">
     <div class="chat-header">Bate-Papo</div>
     <div class="messages" id="messages">
-      <!-- Mensagens aparecerão aqui -->
+     
     </div>
     <div class="chat-footer">
       <input type="text" id="messageInput" placeholder="Digite sua mensagem...">
@@ -114,13 +114,13 @@
       const text = messageInput.value.trim();
       if (text === '') return;
 
-      // Adiciona a mensagem enviada
+      
       const sentMessage = document.createElement('div');
       sentMessage.className = 'message sent';
       sentMessage.textContent = text;
       messages.appendChild(sentMessage);
 
-      // Simula uma resposta
+      
       setTimeout(() => {
         const receivedMessage = document.createElement('div');
         receivedMessage.className = 'message received';
@@ -129,7 +129,7 @@
         messages.scrollTop = messages.scrollHeight; // Mantém o scroll no final
       }, 1000);
 
-      // Limpa o campo de entrada
+      
       messageInput.value = '';
       messages.scrollTop = messages.scrollHeight; // Mantém o scroll no final
     }
